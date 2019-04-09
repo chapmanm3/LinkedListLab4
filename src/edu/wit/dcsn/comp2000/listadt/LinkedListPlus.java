@@ -306,6 +306,36 @@ public class LinkedListPlus<T extends Comparable<? super T>>
 	public void shuffle()
 		{
 		// TODO Auto-generated method stub
+		for(int w = 0; w <= 3; w++) {
+			T[] temp = toArray();
+			@SuppressWarnings( "unchecked" )
+			T[] half1 = (T[]) new Object[numberOfEntries/2];
+			@SuppressWarnings( "unchecked" )
+			T[] half2 = (T[]) new Object[numberOfEntries/2];
+			
+			//separate list array into two halves
+			int i;
+			for(i = 0; i < numberOfEntries/2; i++) {
+				half1[i] = temp[i];
+			}
+			int z = 0;
+			for(;i <= numberOfEntries; i++) {
+				half2[z] = temp[i];
+				z++;
+			}
+			int entries = numberOfEntries;
+			int f = 0;
+			initializeDataFields();
+			for(int t = 0; t < entries; t++) {
+				if(t%2 == 0) {
+					add(half1[f]);
+				}
+				else {
+					add(half2[f]);
+					f++;
+				}
+			}
+		}
 		
 		}	// end shuffle()
 
@@ -318,7 +348,7 @@ public class LinkedListPlus<T extends Comparable<? super T>>
 		// TODO Auto-generated method stub
 		Node currentNode = firstNode;
 		while(currentNode != null) {	
-			for (int position = 0; position <= numberOfEntries; position++) {
+			for (int position = 0; position < numberOfEntries; position++) {
 				if(getEntry(position+1).compareTo(currentNode.data) > 0) {
 					add(position, currentNode.data);
 					remove(position);
